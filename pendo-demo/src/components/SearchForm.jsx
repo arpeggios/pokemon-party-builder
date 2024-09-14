@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 import { disableElements, randomPokemon } from "../modules/util";
 import { DisplayPokemon } from "./DisplayPokemon"
 
-export function SearchForm({ data, getPokemon }) {
+export function SearchForm() {
+  const {pokemon, getPokemon} = useContext(PokemonContext)
+
   function handleRandom() {
     getPokemon(randomPokemon());
   }
@@ -32,8 +36,8 @@ export function SearchForm({ data, getPokemon }) {
           <button id="submit-search" type="submit">Submit</button>
         </div>
       </form>
-      {{ data } &&
-        <DisplayPokemon pokemon={data} />
+      {{ pokemon } &&
+        <DisplayPokemon pokemon={pokemon} />
       }
     </>
   )
