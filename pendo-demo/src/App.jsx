@@ -1,30 +1,39 @@
+// todo: use context api to hold "captured" pokemon. Capture up to six. Click a captured one to display it. Have a button to release it. Save to local storage.
+// todo: use reducers instead of useState
+// todo: use redux instead of context api
+// todo: make a chart for stats
+// todo: add history list of last 100 or so seen
+// todo: add list to show which ones have been seen. Unseen ones can be "???"
+
 import { useEffect, useState } from 'react';
 import './App.css'
-import { PokemonSearch } from './components/PokemonSearch'
+import { disableElements, randomPokemon } from './modules/util';
+import { SearchForm } from './components/SearchForm'
 
 function App() {
   // todo: put this data fetching in a separate file?
   const [pokemon, setPokemon] = useState();
 
-  const displayPokemon = async (theInput) => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${theInput}`)
-    const data = await response.json()
+  async function getPokemon(input) {
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`)
+      const data = await response.json()
 
-    setPokemon(data)
-  }
-
-  function randomPokemon(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+      setPokemon(data);
+      disableElements(false);
+    } catch(e) {
+      alert("Error: " + e.message + ".\n\nPlease enter a Pokemon name or an ID between 1 and 1025.");
+      disableElements(false);
+    }
   }
 
   useEffect(() => {
-    const randomNum = randomPokemon(1, 1025);
-    displayPokemon(randomNum);
+    getPokemon(randomPokemon());
   }, [])
 
   return (
     <>
-      <PokemonSearch pkmnData={pokemon} displayPokemon={displayPokemon}/>
+      <SearchForm data={pokemon} getPokemon={getPokemon}/>
     </>
   )
 }
