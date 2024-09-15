@@ -5,6 +5,7 @@ const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
   const [pokemon, setPokemon] = useState();
+  const [partyPokemon, setPartyPokemon] = useState([]);
 
   async function getPokemon(input) {
     try {
@@ -23,7 +24,7 @@ export const PokemonProvider = ({ children }) => {
     getPokemon(randomPokemon());
   }, [])
 
-  return <PokemonContext.Provider value={{ pokemon, getPokemon }}>
+  return <PokemonContext.Provider value={{ pokemon, getPokemon, partyPokemon, setPartyPokemon }}>
     {children}
   </PokemonContext.Provider>
 }

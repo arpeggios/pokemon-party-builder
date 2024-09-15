@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { disableElements, randomPokemon } from "../modules/util";
-import { DisplayPokemon } from "./DisplayPokemon"
+import { WildPokemon } from "./WildPokemon"
 
-export function SearchForm() {
-  const {pokemon, getPokemon} = useContext(PokemonContext)
+export function Search() {
+  const { pokemon, getPokemon, partyPokemon, setPartyPokemon } = useContext(PokemonContext)
 
   function handleRandom() {
+    disableElements(true);
     getPokemon(randomPokemon());
   }
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     disableElements(true);
@@ -18,6 +19,14 @@ export function SearchForm() {
 
     if (val && (typeof val === "string" || typeof val === "number")) {
       getPokemon(val);
+    }
+  }
+
+  function handleCatch() {
+    if (partyPokemon.length < 6) {
+      disableElements(true);
+      setPartyPokemon([...partyPokemon, pokemon]);
+      getPokemon(randomPokemon());
     }
   }
 
@@ -32,13 +41,16 @@ export function SearchForm() {
           required
         />
         <div>
-          <button type="button" onClick={handleRandom}>Random</button>
+          <button id="random" type="button" onClick={handleRandom}>Random</button>
           <button id="submit-search" type="submit">Submit</button>
         </div>
       </form>
       {{ pokemon } &&
-        <DisplayPokemon pokemon={pokemon} />
+        <WildPokemon pokemon={pokemon} />
       }
+      <div>
+        <button id="catch" type="button" onClick={handleCatch}>Catch</button>
+      </div>
     </>
   )
 }
