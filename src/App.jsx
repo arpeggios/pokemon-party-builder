@@ -1,5 +1,5 @@
+// todo: Delete from local storage.
 // todo: Click a party member to display it in the center of the page. Change Catch button to Release, and click to delete from party. 
-// todo: Save to local storage.
 // todo: use reducers instead of useState
 // todo: use redux instead of context api
 // todo: make a chart for stats

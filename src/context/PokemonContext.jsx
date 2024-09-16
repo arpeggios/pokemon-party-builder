@@ -4,15 +4,24 @@ import { disableElements, randomPokemon } from '../modules/util';
 const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
-  const [pokemon, setPokemon] = useState();
-  const [partyPokemon, setPartyPokemon] = useState([]);
+  const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder")) || [];
+  const [wildPokemon, setWildPokemon] = useState();
+  const [partyPokemon, setPartyPokemon] = useState(localStorageData);
+
+  function save(data) {
+    localStorage.setItem("pokemonPartyBuilder", JSON.stringify(data));
+  }
+  
+  useEffect(() => {
+    save(partyPokemon);
+  }, [partyPokemon])
 
   async function getPokemon(input) {
     try {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`)
       const data = await response.json()
 
-      setPokemon(data);
+      setWildPokemon(data);
       disableElements(false);
     } catch(e) {
       alert("Error: " + e.message + ".\n\nPlease enter a Pokemon name or an ID between 1 and 1025.");
@@ -24,7 +33,7 @@ export const PokemonProvider = ({ children }) => {
     getPokemon(randomPokemon());
   }, [])
 
-  return <PokemonContext.Provider value={{ pokemon, getPokemon, partyPokemon, setPartyPokemon }}>
+  return <PokemonContext.Provider value={{ wildPokemon, getPokemon, partyPokemon, setPartyPokemon }}>
     {children}
   </PokemonContext.Provider>
 }

@@ -4,7 +4,7 @@ import { disableElements, randomPokemon } from "../modules/util";
 import { WildPokemon } from "./WildPokemon"
 
 export function Search() {
-  const { pokemon, getPokemon, partyPokemon, setPartyPokemon } = useContext(PokemonContext)
+  const { wildPokemon, getPokemon, partyPokemon, setPartyPokemon } = useContext(PokemonContext)
 
   function handleRandom() {
     disableElements(true);
@@ -25,15 +25,15 @@ export function Search() {
   function handleCatch() {
     if (partyPokemon.length < 6) {
       disableElements(true);
-      setPartyPokemon([...partyPokemon, pokemon]);
+      setPartyPokemon([...partyPokemon, wildPokemon]);
       getPokemon(randomPokemon());
     }
   }
 
   return (
     <>
-      {{ pokemon } &&
-        <WildPokemon pokemon={pokemon} />
+      {{ wildPokemon } &&
+        <WildPokemon pokemon={wildPokemon} />
       }
       <form onSubmit={handleSubmit}>
         <input
