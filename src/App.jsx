@@ -1,10 +1,12 @@
-// todo: click a party member to show its stats
-// todo: use reducers instead of useState
-// todo: use redux instead of context api
-// todo: make a chart for stats
-// todo: style with mui
-// todo: add history list of last several seen
-// todo: add chart to show which ones have been seen. Unseen ones can be "???"
+// todo:
+// - use reducers instead of useState
+// - use redux instead of context api
+// - make charts for party member stats
+// - style with mui
+//
+// optional:
+// - add history list of last several wild pokemon
+// - add chart to show which pokemon have been seen
 
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
