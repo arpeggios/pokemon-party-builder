@@ -1,6 +1,5 @@
 export function WildPokemon({ pokemon }) {
   if (pokemon) {
-    // console.log(pokemon)
     return (
       <>
         <div className="capitalize">Name: {pokemon.name}</div>

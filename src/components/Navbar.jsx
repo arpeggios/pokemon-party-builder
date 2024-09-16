@@ -35,7 +35,7 @@ export function Navbar() {
         </div>
         <div className="nav-links">
           <Link to="/">
-            Catch
+            Home
           </Link>
           <Link to="about">
             About
