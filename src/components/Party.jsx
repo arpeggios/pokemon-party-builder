@@ -26,12 +26,11 @@ export function Party() {
       <div className="party-box">
         <div className="party-box__inner">
           <div>Your Party ({partyPokemon.length})</div>
-          {console.log({ partyPokemon })}
           <div style={{ display: "flex" }}>
             {
               partyPokemon.length > 0 ?
-                (partyPokemon.map((item) => {
-                  return (<PartyPokemon key={Math.floor(Math.random() * 1000000000)} partyMember={item} />)
+                (partyPokemon.map((item, index) => {
+                  return (<PartyPokemon key={Math.floor(Math.random() * 1000000000)} partyMember={item} index={index} />)
                 })) : null
             }
           </div>

@@ -1,24 +1,30 @@
-export function PartyPokemon({ partyMember }) {
-  const css = `
-    .this-pokemon:hover {
-      background-color: white;
-      color: black;
-      cursor: pointer;
-      border-radius: 10px;
-    }
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
+
+const css = `
+  .pokemon-name {
+    text-transform: capitalize;
+  }
+`
+export function PartyPokemon({ partyMember, index }) {
+  const { setPartyPokemon } = useContext(PokemonContext);
+
+  function handleRemove(partyIndex) {
+    const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder"));
     
-    .pokemon-name {
-      text-transform: capitalize;
-    }
-  `
+    localStorageData.splice(partyIndex, 1)
+    
+    setPartyPokemon(localStorageData);
+  }
 
   return (
     <>
       <style>{css}</style>
       <div className="this-pokemon">
-        <img src={partyMember.sprites.front_default} alt={partyMember.name}/>
+        <img src={partyMember.sprites.front_default} alt={partyMember.name} />
         <div className="pokemon-name">{partyMember.name}</div>
         <div>{partyMember.id}</div>
+        <button type="button" onClick={() => {handleRemove(index)}}>Remove</button>
       </div>
     </>
   )

@@ -4,6 +4,10 @@ main {
   padding: 2rem;
 }
 
+button {
+  cursor: pointer;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
