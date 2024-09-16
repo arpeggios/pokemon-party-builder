@@ -7,6 +7,7 @@ export const PokemonProvider = ({ children }) => {
   const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder")) || [];
   const [wildPokemon, setWildPokemon] = useState();
   const [partyPokemon, setPartyPokemon] = useState(localStorageData);
+  const [disabled, setDisabled] = useState();
 
   function save(data) {
     localStorage.setItem("pokemonPartyBuilder", JSON.stringify(data));
@@ -33,7 +34,7 @@ export const PokemonProvider = ({ children }) => {
     getPokemon(randomPokemon());
   }, [])
 
-  return <PokemonContext.Provider value={{ wildPokemon, getPokemon, partyPokemon, setPartyPokemon }}>
+  return <PokemonContext.Provider value={{ wildPokemon, getPokemon, partyPokemon, setPartyPokemon, disabled, setDisabled }}>
     {children}
   </PokemonContext.Provider>
 }

@@ -25,7 +25,7 @@ export function Party() {
 
       <div className="party-box">
         <div className="party-box__inner">
-          <div>Your Party ({partyPokemon.length})</div>
+          <div>Your Party ({partyPokemon.length !== 6 ? partyPokemon.length : "max"})</div>
           <div style={{ display: "flex" }}>
             {
               partyPokemon.length > 0 ?

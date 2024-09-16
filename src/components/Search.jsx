@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { disableElements, randomPokemon } from "../modules/util";
 import { WildPokemon } from "./WildPokemon"
@@ -20,7 +20,7 @@ const css = `
 `
 
 export function Search() {
-  const { wildPokemon, getPokemon, partyPokemon, setPartyPokemon } = useContext(PokemonContext)
+  const { wildPokemon, getPokemon, partyPokemon, setPartyPokemon, disabled, setDisabled } = useContext(PokemonContext);
 
   function handleRandom() {
     disableElements(true);
@@ -46,6 +46,10 @@ export function Search() {
     }
   }
 
+  useEffect(() => {
+    (partyPokemon.length < 6 ? setDisabled(false) : setDisabled(true));
+  }, [partyPokemon])
+
   return (
     <>
       <style>{css}</style>
@@ -63,7 +67,7 @@ export function Search() {
       </form>
       <div className="action-btns">
         <button id="random" type="button" onClick={handleRandom}>Random</button>
-        <button id="catch" type="button" onClick={handleCatch}>Catch</button>
+        <button id="catch" type="button" onClick={handleCatch} disabled={disabled}>Catch</button>
       </div>
     </>
   )

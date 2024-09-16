@@ -7,7 +7,7 @@ const css = `
   }
 `
 export function PartyPokemon({ partyMember, index }) {
-  const { setPartyPokemon } = useContext(PokemonContext);
+  const { partyPokemon, setPartyPokemon, setDisabled } = useContext(PokemonContext);
 
   function handleRemove(partyIndex) {
     const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder"));
@@ -15,6 +15,10 @@ export function PartyPokemon({ partyMember, index }) {
     localStorageData.splice(partyIndex, 1)
     
     setPartyPokemon(localStorageData);
+
+    if (partyPokemon.length === 6) {
+      setDisabled(false);
+    }
   }
 
   return (
