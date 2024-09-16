@@ -32,6 +32,9 @@ export function Search() {
 
   return (
     <>
+      {{ pokemon } &&
+        <WildPokemon pokemon={pokemon} />
+      }
       <form onSubmit={handleSubmit}>
         <input
           id="entered-pokemon"
@@ -40,15 +43,10 @@ export function Search() {
           style={{ width: "200px" }}
           required
         />
-        <div>
-          <button id="random" type="button" onClick={handleRandom}>Random</button>
-          <button id="submit-search" type="submit">Submit</button>
-        </div>
+        <button id="submit-search" type="submit">Submit</button>
       </form>
-      {{ pokemon } &&
-        <WildPokemon pokemon={pokemon} />
-      }
       <div>
+        <button id="random" type="button" onClick={handleRandom}>Random</button>
         <button id="catch" type="button" onClick={handleCatch}>Catch</button>
       </div>
     </>

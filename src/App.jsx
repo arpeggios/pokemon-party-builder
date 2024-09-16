@@ -7,21 +7,23 @@
 // todo: add list to show which ones have been seen. Unseen ones can be "???"
 
 import './App.css'
-import { Search } from './components/Search'
-import { PokemonProvider } from './context/PokemonContext'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { About } from './pages/About';
+import { Catch } from './pages/Catch';
 import { Navbar } from './components/Navbar';
-import { Party } from "./components/Party";
 
 function App() {
   return (
     <>
-      <PokemonProvider>
+      <Router>
         <Navbar />
         <main>
-          <Search />
-          <Party />
+          <Routes>
+            <Route path="/" element={<Catch />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </main>
-      </PokemonProvider>
+      </Router>
     </>
   )
 }
