@@ -8,7 +8,7 @@ const css = `
     width: 180px;
   }  
 
-#submit-search {
+  #submit-search {
     margin-left: 8px;
   }
 
