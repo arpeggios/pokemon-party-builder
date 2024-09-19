@@ -1,8 +1,8 @@
 // todo:
-// - use reducers instead of useState
 // - use redux instead of context api
 // - make charts for party member stats
 // - style with mui
+// - Write test cases
 //
 // optional:
 // - add history list of last several wild pokemon
@@ -11,7 +11,7 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { About } from './pages/About';
-import { Catch } from './pages/Catch';
+import { Home } from './pages/Home';
 import { Navbar } from './components/Navbar';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Navbar />
         <main>
           <Routes>
-            <Route path="/" element={<Catch />} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>

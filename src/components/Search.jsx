@@ -20,11 +20,11 @@ const css = `
 `
 
 export function Search() {
-  const { wildPokemon, getPokemon, partyPokemon, setPartyPokemon, disabled, setDisabled } = useContext(PokemonContext);
+  const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, dispatchDisabled } = useContext(PokemonContext);
 
   function handleRandom() {
     disableElements(true);
-    getPokemon(randomPokemon());
+    fetchPokemon(randomPokemon());
   }
 
   function handleSubmit(e) {
@@ -34,20 +34,23 @@ export function Search() {
     const val = document.querySelector("#entered-pokemon").value.trim().toLowerCase();
 
     if (val && (typeof val === "string" || typeof val === "number")) {
-      getPokemon(val);
+      fetchPokemon(val);
     }
   }
 
   function handleCatch() {
     if (partyPokemon.length < 6) {
       disableElements(true);
-      setPartyPokemon([...partyPokemon, wildPokemon]);
-      getPokemon(randomPokemon());
+      dispatchPartyPokemon({
+        type: "ADD_POKEMON",
+        payload: wildPokemon
+      })
+      fetchPokemon(randomPokemon());
     }
   }
 
   useEffect(() => {
-    (partyPokemon.length < 6 ? setDisabled(false) : setDisabled(true));
+    (partyPokemon.length < 6 ? dispatchDisabled(false) : dispatchDisabled(true));
   }, [partyPokemon])
 
   return (

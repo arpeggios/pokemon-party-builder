@@ -7,17 +7,16 @@ const css = `
   }
 `
 export function PartyPokemon({ partyMember, index }) {
-  const { partyPokemon, setPartyPokemon, setDisabled } = useContext(PokemonContext);
+  const { partyPokemon, dispatchPartyPokemon, dispatchDisabled } = useContext(PokemonContext);
 
   function handleRemove(partyIndex) {
-    const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder"));
-    
-    localStorageData.splice(partyIndex, 1)
-    
-    setPartyPokemon(localStorageData);
+    dispatchPartyPokemon({
+      type: "REMOVE_POKEMON",
+      payload: partyIndex
+    });
 
     if (partyPokemon.length === 6) {
-      setDisabled(false);
+      dispatchDisabled(false);
     }
   }
 
