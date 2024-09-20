@@ -1,0 +1,11 @@
+{
+  "typeAquisition": {
+    "include": [
+      "jest"
+    ]
+  },
+  "compilerOptions": {
+    "types": ["vitetest/globals"]
+  },
+  "include": ["src", ".src/test/setup.js"]
+}
