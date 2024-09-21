@@ -27,11 +27,11 @@ export function Search() {
     fetchPokemon(randomPokemon());
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: any) {
     e.preventDefault();
     disableElements(true);
 
-    const val = document.querySelector("#entered-pokemon").value.trim().toLowerCase();
+    const val: string = (document.querySelector("#entered-pokemon") as HTMLInputElement).value.trim().toLowerCase();
 
     if (val && (typeof val === "string" || typeof val === "number")) {
       fetchPokemon(val);

@@ -1,4 +1,6 @@
-export function WildPokemon({ pokemon }) {
+import { IPokemon } from "../interfaces/IPokemon"
+
+export function WildPokemon({ pokemon }: IPokemon) {
   if (pokemon) {
     return (
       <>

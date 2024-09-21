@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
+import { IPartyPokemon } from "../interfaces/IPokemon";
 
 const css = `
   .pokemon-name {
     text-transform: capitalize;
   }
 `
-export function PartyPokemon({ partyMember, index }) {
+
+export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
   const { partyPokemon, dispatchPartyPokemon, dispatchDisabled } = useContext(PokemonContext);
 
-  function handleRemove(partyIndex) {
+  function handleRemove(partyIndex: number) {
     dispatchPartyPokemon({
       type: "REMOVE_POKEMON",
       payload: partyIndex

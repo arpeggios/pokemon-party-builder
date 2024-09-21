@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PartyPokemon } from "./PartyPokemon";
 import { PokemonContext } from "../context/PokemonContext";
+import { IPokemon } from "../interfaces/IPokemon";
 
 const css = `
   .party-box {
@@ -29,7 +30,7 @@ export function Party() {
           <div style={{ display: "flex" }}>
             {
               partyPokemon.length > 0 ?
-                (partyPokemon.map((item, index) => {
+                (partyPokemon.map((item: IPokemon, index: number) => {
                   return (<PartyPokemon key={Math.floor(Math.random() * 1000000000)} partyMember={item} index={index} />)
                 })) : null
             }

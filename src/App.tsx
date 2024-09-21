@@ -1,8 +1,8 @@
 // todo:
+// - Write test cases
 // - use redux instead of context api
 // - make charts for party member stats
 // - style with mui
-// - Write test cases
 //
 // optional:
 // - add history list of last several wild pokemon

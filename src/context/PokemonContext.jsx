@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
-import { disableElements, randomPokemon } from '../modules/util';
+import { disableElements, randomPokemon } from '../modules/util.ts';
 import { disabledReducer, partyPokemonReducer, wildPokemonReducer } from "./PokemonReducers";
 
 const PokemonContext = createContext();
