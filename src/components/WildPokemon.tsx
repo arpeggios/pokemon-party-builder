@@ -1,6 +1,10 @@
 import { IPokemon } from "../interfaces/IPokemon"
 
-export function WildPokemon({ pokemon }: IPokemon) {
+type Props = {
+  pokemon: IPokemon
+}
+
+export function WildPokemon({ pokemon }: Props) {
   if (pokemon) {
     return (
       <>
