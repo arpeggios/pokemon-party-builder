@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
-import { disableElements, randomPokemon } from "../modules/util";
+import { randomPokemon } from "../modules/Util";
 import { WildPokemon } from "./WildPokemon"
 
 const css = `
@@ -20,16 +20,22 @@ const css = `
 `
 
 export function Search() {
-  const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, dispatchDisabled } = useContext(PokemonContext);
+  const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, dispatchDisabled, inputs } = useContext(PokemonContext);
 
   function handleRandom() {
-    disableElements(true);
+    // disableElements(true);
+
+    dispatchDisabled({
+      type: "DISABLE",
+      payload: inputs
+    })
+
     fetchPokemon(randomPokemon());
   }
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    disableElements(true);
+    // disableElements(true);
 
     const val: string = (document.querySelector("#entered-pokemon") as HTMLInputElement).value.trim().toLowerCase();
 
@@ -40,7 +46,13 @@ export function Search() {
 
   function handleCatch() {
     if (partyPokemon.length < 6) {
-      disableElements(true);
+      // disableElements(true);
+
+      dispatchDisabled({
+        type: "DISABLE",
+        payload: inputs
+      })
+
       dispatchPartyPokemon({
         type: "ADD_POKEMON",
         payload: wildPokemon
@@ -49,9 +61,10 @@ export function Search() {
     }
   }
 
-  useEffect(() => {
-    (partyPokemon.length < 6 ? dispatchDisabled(false) : dispatchDisabled(true));
-  }, [partyPokemon])
+  // disable catch button if party is 6
+  // useEffect(() => {
+  //   (partyPokemon.length >= 6 ? document.querySelector("#catch")?.setAttribute("disabled", "disabled") : document.querySelector("#catch")?.removeAttribute("disabled") )
+  // }, [fetchPokemon])
 
   return (
     <>
@@ -70,7 +83,7 @@ export function Search() {
       </form>
       <div className="action-btns">
         <button id="random" type="button" onClick={handleRandom}>Random</button>
-        <button id="catch" type="button" onClick={handleCatch} disabled={disabled}>Catch</button>
+        <button id="catch" type="button" onClick={handleCatch}>Catch</button>
       </div>
     </>
   )

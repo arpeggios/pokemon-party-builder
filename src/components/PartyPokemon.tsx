@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { IPartyPokemon } from "../interfaces/IPokemon";
 
@@ -9,17 +9,13 @@ const css = `
 `
 
 export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
-  const { partyPokemon, dispatchPartyPokemon, dispatchDisabled } = useContext(PokemonContext);
+  const { dispatchPartyPokemon } = useContext(PokemonContext);
 
   function handleRemove(partyIndex: number) {
     dispatchPartyPokemon({
       type: "REMOVE_POKEMON",
       payload: partyIndex
     });
-
-    if (partyPokemon.length === 6) {
-      dispatchDisabled(false);
-    }
   }
 
   return (
