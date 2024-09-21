@@ -9,17 +9,13 @@ const css = `
 `
 
 export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
-  const { partyPokemon, dispatchPartyPokemon, dispatchDisabled } = useContext(PokemonContext);
+  const { dispatchPartyPokemon } = useContext(PokemonContext);
 
   function handleRemove(partyIndex: number) {
     dispatchPartyPokemon({
       type: "REMOVE_POKEMON",
       payload: partyIndex
     });
-
-    if (partyPokemon.length === 6) {
-      dispatchDisabled(false);
-    }
   }
 
   return (

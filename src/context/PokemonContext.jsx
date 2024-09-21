@@ -1,12 +1,11 @@
 import { createContext, useEffect, useReducer } from "react";
 import { disableElements, randomPokemon } from '../modules/util.ts';
-import { disabledReducer, partyPokemonReducer, wildPokemonReducer } from "./PokemonReducers";
+import { partyPokemonReducer, wildPokemonReducer } from "./PokemonReducers";
 
 const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
   const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder")) || [];
-  const [disabled, dispatchDisabled] = useReducer(disabledReducer, null)
   const [wildPokemon, dispatchWildPokemon] = useReducer(wildPokemonReducer, null)
   const [partyPokemon, dispatchPartyPokemon] = useReducer(partyPokemonReducer, localStorageData)
 
@@ -38,7 +37,7 @@ export const PokemonProvider = ({ children }) => {
     fetchPokemon(randomPokemon());
   }, [])
 
-  return <PokemonContext.Provider value={{ wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, dispatchDisabled }}>
+  return <PokemonContext.Provider value={{ wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon }}>
     {children}
   </PokemonContext.Provider>
 }

@@ -20,7 +20,7 @@ const css = `
 `
 
 export function Search() {
-  const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, dispatchDisabled } = useContext(PokemonContext);
+  const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon } = useContext(PokemonContext);
 
   function handleRandom() {
     disableElements(true);
@@ -49,10 +49,6 @@ export function Search() {
     }
   }
 
-  useEffect(() => {
-    (partyPokemon.length < 6 ? dispatchDisabled(false) : dispatchDisabled(true));
-  }, [partyPokemon])
-
   return (
     <>
       <style>{css}</style>
@@ -70,7 +66,7 @@ export function Search() {
       </form>
       <div className="action-btns">
         <button id="random" type="button" onClick={handleRandom}>Random</button>
-        <button id="catch" type="button" onClick={handleCatch} disabled={disabled}>Catch</button>
+        <button id="catch" type="button" onClick={handleCatch}>Catch</button>
       </div>
     </>
   )
