@@ -1,0 +1,9 @@
+// https://stackoverflow.com/questions/77476474/reactjs-vscode-cannot-find-name-cy-in-cypress-integration-testing/77476529#77476529
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress"]
+  },
+  "include": ["**/*.ts"]
+}
