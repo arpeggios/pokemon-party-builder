@@ -1,99 +1,30 @@
 import { render, screen } from "@testing-library/react";
-import { setupServer } from "msw/node";
-import { http, HttpResponse } from "msw";
-import { MemoryRouter } from "react-router-dom";
-import { PokemonProvider } from "./PokemonContext";
 import { WildPokemon } from "../components/WildPokemon";
-import { Search } from "../components/Search";
-import { act } from "react";
-import { IPokemon } from "../interfaces/IPokemon";
-
-// https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png
-const mockJson: IPokemon = {
-  "name": "pikachu",
-  "id": 25,
-  "types": [
-    {
-      "type": {
-        "name": "electric"
-      }
-    }
-  ],
-  "sprites": {
-    "front_default": "../test/assets/25.png"
-  }
-}
-
-export const handlers = [
-  http.get(`https://pokeapi.co/api/v2/pokemon${/[0-9]+/}`, () => {
-    return HttpResponse.json(mockJson)
-  })
-];
-
-const server = setupServer(...handlers);
-
-beforeAll(() => {
-  server.listen();
-});
-
-afterEach(() => {
-  server.resetHandlers();
-});
-
-afterAll(() => {
-  server.close();
-});
+import { mockPokemon } from "../test/mocks/handlers";
 
 describe("WildPokemon", async () => {
-  // await act(async () => {
-  // render(
-  //   // <MemoryRouter>
-  //   // <PokemonProvider>
-  //   //   <Search>
-  //   <WildPokemon pokemon={mockJson} />
-  //   //   </Search>
-  //   // </PokemonProvider>
-  //   // </MemoryRouter>
-  // );
-  // });
-
-  // display the wild pokemon elements
-
-
-  // await pause();
-  // console.log("mockJson");
-  // console.log(mockJson);
-  // screen.debug();
-
   it("displays pokemon name", async () => {
-    render(<WildPokemon pokemon={mockJson} />);
+    render(<WildPokemon pokemon={mockPokemon} />);
     const name = await screen.findByTestId("wild-pokemon-name");
-    expect(name).toHaveTextContent(`Name: ${mockJson.name}`);
+    expect(name).toHaveTextContent(`Name: ${mockPokemon.name}`);
   });
 
   it("displays pokemon id", async () => {
-    render(<WildPokemon pokemon={mockJson} />);
+    render(<WildPokemon pokemon={mockPokemon} />);
     const theId = await screen.findByTestId("wild-pokemon-id");
-    expect(theId).toHaveTextContent(`ID: ${mockJson.id}`)
+    expect(theId).toHaveTextContent(`ID: ${mockPokemon.id}`)
   });
 
   it("displays the pokemon type", async () => {
-    render(<WildPokemon pokemon={mockJson} />);  
+    render(<WildPokemon pokemon={mockPokemon} />);  
     const theType = await screen.findByTestId("wild-pokemon-type");
-    expect(theType).toHaveTextContent(`Type: ${mockJson.types[0].type.name}`)
+    expect(theType).toHaveTextContent(`Type: ${mockPokemon.types[0].type.name}`)
   });
 
   it("displays the pokemon sprite image", async () => {
-    render(<WildPokemon pokemon={mockJson} />);
+    render(<WildPokemon pokemon={mockPokemon} />);
     screen.debug();
-
     const sprite = await screen.findByTestId("wild-pokemon-img");
-
-    // expect(screen.findByTestId("wild-pokemon-img"))
-    expect(sprite).toHaveAttribute("src", mockJson.sprites.front_default);
+    expect(sprite).toHaveAttribute("src", mockPokemon.sprites.front_default);
   });
 });
-
-// const pause = () => new Promise(resolve => {
-//   setTimeout(resolve, 1000);
-// })
