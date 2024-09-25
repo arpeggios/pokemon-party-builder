@@ -1,12 +1,7 @@
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { IPartyPokemon } from "../interfaces/IPokemon";
-
-const css = `
-  .pokemon-name {
-    text-transform: capitalize;
-  }
-`
+import { Box, Button, Typography } from "@mui/material"
 
 export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
   const { dispatchPartyPokemon } = useContext(PokemonContext);
@@ -20,13 +15,12 @@ export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
 
   return (
     <>
-      <style>{css}</style>
-      <div className="this-pokemon">
-        <img src={partyMember.sprites.front_default} alt={partyMember.name} />
-        <div className="pokemon-name">{partyMember.name}</div>
-        <div>{partyMember.id}</div>
-        <button type="button" onClick={() => {handleRemove(index)}}>Remove</button>
-      </div>
+      <Box className="this-pokemon" sx={{ textAlign: "center", textTransform: "capitalize" }}>
+        <Box component="img" src={partyMember.sprites.front_default} alt={partyMember.name} />
+        <Typography className="pokemon-name">{partyMember.name}</Typography>
+        <Typography>{partyMember.id}</Typography>
+        <Button type="button" size="small" onClick={() => { handleRemove(index) }}>Remove</Button>
+      </Box>
     </>
   )
 }

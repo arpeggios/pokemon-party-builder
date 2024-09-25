@@ -1,47 +1,31 @@
-import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { Link, Button, Box } from "@mui/material"
+// todo: use AppBar
+// import AppBar from "@mui/material/AppBar"
 
 export function Navbar() {
-  const css = `
-    nav {
-      display: inline-flex;
-      width: 100%;
-      align-items: center;
-    }
-
-    nav a {
-      text-decoration: none;
-      padding: 10px;
-    }
-
-    .nav-title {
-      font-weight: 800;
-      font-size: 24px;
-    }
-
-    .nav-links {
-      margin-left: auto;
-      font-weight: 600;
-    }
-  `
-
   return (
     <>
-      <style>{css}</style>
-      <nav>
-        <div className="nav-title">
-          <Link to="/">
-            Pokemon Party Builder
+      <nav style={{ marginTop: "16px", display: "inline-flex", width: "100%", alignItems: "center" }}>
+        <Link component={RouterLink} to="/" sx={{ fontSize: "20px", textDecoration: "none", fontWeight: "bold" }}>
+          Pokemon Party Builder
+        </Link>
+        <Typography sx={{marginLeft: "auto"}}>
+          <Link component={RouterLink} to="/" sx={{padding: "10px"}}>
+            <Button>
+              Home
+            </Button>
           </Link>
-        </div>
-        <div className="nav-links">
-          <Link to="/">
-            Home
+        </Typography>
+        <Typography>
+          <Link component={RouterLink} to="about" sx={{padding: "10px"}}>
+            <Button>
+              About
+            </Button>
           </Link>
-          <Link to="about">
-            About
-          </Link>
-        </div>
-      </nav>
+        </Typography>
+      </nav >
     </>
   )
 }

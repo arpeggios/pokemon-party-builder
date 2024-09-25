@@ -1,23 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { disableElements, randomPokemon } from "../modules/util";
 import { WildPokemon } from "./WildPokemon"
-
-const css = `
-  #entered-pokemon {
-    width: 180px;
-  }  
-
-  #submit-search {
-    margin-left: 8px;
-  }
-
-  .action-btns {
-    button {
-      margin: 10px 5px 0;
-    }
-  }
-`
+import { Box, TextField, Button } from "@mui/material";
 
 export function Search() {
   const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon } = useContext(PokemonContext);
@@ -51,23 +36,33 @@ export function Search() {
 
   return (
     <>
-      <style>{css}</style>
       {{ wildPokemon } &&
         <WildPokemon pokemon={wildPokemon} />
       }
-      <form onSubmit={handleSubmit}>
-        <input
-          id="entered-pokemon"
-          type="text"
-          placeholder="Enter Pokemon name or ID"
-          required
-        />
-        <button id="submit-search" type="submit">Submit</button>
-      </form>
-      <div className="action-btns">
-        <button id="random" type="button" onClick={handleRandom}>Random</button>
-        <button id="catch" type="button" onClick={handleCatch}>Catch</button>
-      </div>
+      <Box sx={{ textAlign: "center" }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+        >
+          <TextField
+            id="entered-pokemon"
+            sx={{
+              width: { sm: "400px" },
+              marginBottom: "10px"
+            }}
+            label="Pokemon name or ID"
+            variant="outlined"
+            required
+          />
+          <Button type="submit" variant="contained" sx={{height: "56px", marginLeft: "10px", marginBottom: "10px"}}>
+            Search
+          </Button>
+        </Box>
+        <Box>
+          <Button id="random" type="button" variant="outlined" onClick={handleRandom}>Random</Button>
+          <Button id="catch" type="button" variant="contained" onClick={handleCatch} sx={{marginLeft: "10px"}} color="secondary">Catch</Button>
+        </Box>
+      </Box>
     </>
   )
 }
