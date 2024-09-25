@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { disableElements, randomPokemon } from "../modules/util";
 import { WildPokemon } from "./WildPokemon"
@@ -6,6 +6,7 @@ import { Box, TextField, Button } from "@mui/material";
 
 export function Search() {
   const { wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon } = useContext(PokemonContext);
+  const [inputValue, setInputValue] = useState('');
 
   function handleRandom() {
     disableElements(true);
@@ -16,11 +17,12 @@ export function Search() {
     e.preventDefault();
     disableElements(true);
 
-    const val: string = (document.querySelector("#entered-pokemon") as HTMLInputElement).value.trim().toLowerCase();
-
-    if (val && (typeof val === "string" || typeof val === "number")) {
-      fetchPokemon(val);
+    if (inputValue && (typeof inputValue === "string" || typeof inputValue === "number")) {
+      console.log('fetch')
+      fetchPokemon(inputValue);
     }
+
+    setInputValue('');
   }
 
   function handleCatch() {
@@ -40,7 +42,7 @@ export function Search() {
         <WildPokemon pokemon={wildPokemon} />
       }
       <Box sx={{ textAlign: "center" }}>
-        <Box sx={{mb: 2}}>
+        <Box sx={{mb: 3}}>
           <Button id="random" type="button" variant="outlined" onClick={handleRandom}>Random</Button>
           <Button id="catch" type="button" variant="contained" onClick={handleCatch} sx={{ marginLeft: "10px" }} color="secondary">Catch</Button>
         </Box>
@@ -49,8 +51,6 @@ export function Search() {
           onSubmit={handleSubmit}
         >
           <TextField
-            multiline={true}
-            rows={1}
             id="entered-pokemon"
             sx={{
               width: "188px",
@@ -59,6 +59,8 @@ export function Search() {
             label="Pokemon name or ID"
             variant="outlined"
             required
+            value={inputValue}
+            onChange={(e) => {setInputValue(e.target.value.trim().toLowerCase())}}
           />
           <Button type="submit" variant="contained" sx={{ marginLeft: "10px", marginBottom: "10px" }}>
             Search
