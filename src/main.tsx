@@ -6,6 +6,31 @@ import { Container, createTheme, ThemeProvider, CssBaseline } from '@mui/materia
 import { blue, green } from '@mui/material/colors'
 
 const theme = createTheme({
+  components: {
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          height: "30px",
+        }
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          height: "30px"
+        }
+      }
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "14px",
+          lineHeight: "normal",
+          top: "-7px !important"
+        }
+      }
+    }
+  },
   typography: {
     h1: {
       fontSize: "3rem",

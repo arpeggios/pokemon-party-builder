@@ -40,27 +40,29 @@ export function Search() {
         <WildPokemon pokemon={wildPokemon} />
       }
       <Box sx={{ textAlign: "center" }}>
+        <Box sx={{mb: 2}}>
+          <Button id="random" type="button" variant="outlined" onClick={handleRandom}>Random</Button>
+          <Button id="catch" type="button" variant="contained" onClick={handleCatch} sx={{ marginLeft: "10px" }} color="secondary">Catch</Button>
+        </Box>
         <Box
           component="form"
           onSubmit={handleSubmit}
         >
           <TextField
+            multiline={true}
+            rows={1}
             id="entered-pokemon"
             sx={{
-              width: { sm: "400px" },
+              width: "188px",
               marginBottom: "10px"
             }}
             label="Pokemon name or ID"
             variant="outlined"
             required
           />
-          <Button type="submit" variant="contained" sx={{height: "56px", marginLeft: "10px", marginBottom: "10px"}}>
+          <Button type="submit" variant="contained" sx={{ marginLeft: "10px", marginBottom: "10px" }}>
             Search
           </Button>
-        </Box>
-        <Box>
-          <Button id="random" type="button" variant="outlined" onClick={handleRandom}>Random</Button>
-          <Button id="catch" type="button" variant="contained" onClick={handleCatch} sx={{marginLeft: "10px"}} color="secondary">Catch</Button>
         </Box>
       </Box>
     </>

@@ -7,11 +7,11 @@ import { Link, Button, Box } from "@mui/material"
 export function Navbar() {
   return (
     <>
-      <nav style={{ marginTop: "16px", display: "inline-flex", width: "100%", alignItems: "center" }}>
+      <Box component={"nav"} sx={{ marginTop: "16px", display: "flex", width: "100%", alignItems: "center", flexDirection: {xs: "column", sm: "row"}} }>
         <Link component={RouterLink} to="/" sx={{ fontSize: "20px", textDecoration: "none", fontWeight: "bold" }}>
           Pokemon Party Builder
         </Link>
-        <Typography sx={{marginLeft: "auto"}}>
+        <Typography sx={{marginLeft: {sm: "auto"}}}>
           <Link component={RouterLink} to="/" sx={{padding: "10px"}}>
             <Button>
               Home
@@ -25,7 +25,7 @@ export function Navbar() {
             </Button>
           </Link>
         </Typography>
-      </nav >
+      </Box >
     </>
   )
 }

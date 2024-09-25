@@ -17,8 +17,9 @@ export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
     <>
       <Box className="this-pokemon" sx={{ textAlign: "center", textTransform: "capitalize" }}>
         <Box component="img" src={partyMember.sprites.front_default} alt={partyMember.name} />
-        <Typography className="pokemon-name">{partyMember.name}</Typography>
-        <Typography>{partyMember.id}</Typography>
+        <Typography sx={{fontWeight: "bold"}} data-testid="party-pokemon-name">{partyMember.name}</Typography>
+        <Typography data-testid="party-pokemon-id">ID: {partyMember.id}</Typography>
+        <Typography sx={{ textTransform: "capitalize" }} data-testid="party-pokemon-type">Type: {partyMember.types[0].type.name} </Typography>
         <Button type="button" size="small" onClick={() => { handleRemove(index) }}>Remove</Button>
       </Box>
     </>

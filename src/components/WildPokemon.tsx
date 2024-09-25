@@ -9,10 +9,8 @@ type Props = {
 export function WildPokemon({ pokemon }: Props) {
   if (pokemon) {
     return (
-      <Box sx={{textAlign: "center"}}>
-        <Typography sx={{ textTransform: "capitalize", fontWeight: "bold" }} data-testid="wild-pokemon-name" >{pokemon.name}</Typography>
-        <Typography data-testid="wild-pokemon-id">ID: {pokemon.id}</Typography>
-        <Typography sx={{ textTransform: "capitalize" }} data-testid="wild-pokemon-type">Type: {pokemon.types[0].type.name} </Typography>
+      <Box sx={{ textAlign: "center" }}>
+        <Typography display="block" data-testid="wild-pokemon-name">A wild <Typography sx={{ textTransform: "capitalize", fontWeight: "bold" }} component={"span"} >{pokemon.name}</Typography> appeared!</Typography>
         <Box component="img" src={pokemon.sprites.front_default} alt={pokemon.name} data-testid="wild-pokemon-img" />
       </Box>
     )

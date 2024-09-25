@@ -11,7 +11,7 @@ export function Party() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <Typography sx={{ textAlign: "center", margin: "25px auto 15px", fontWeight: "bold" }}>Your Party ({partyPokemon.length !== 6 ? partyPokemon.length : "max"})</Typography>
+        <Typography sx={{ textAlign: "center", margin: "19px auto 15px", fontWeight: "bold" }}>Your Party ({partyPokemon.length !== 6 ? partyPokemon.length : "max"})</Typography>
         <Grid container spacing={3} sx={{
           justifyContent: "center", border: "2px solid white",
           padding: "15px 25px 15px", borderRadius: "15px",
