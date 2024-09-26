@@ -1,6 +1,6 @@
 # Pokemon Party Builder
 
-https://pokepartybuilder.netlify.app/
+<a href="https://pokepartybuilder.netlify.app/" target="_blank">Visit the website</a>
 
 Build a party of up to 6 Pokemon.
 
