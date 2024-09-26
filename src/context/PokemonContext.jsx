@@ -1,13 +1,15 @@
-import { createContext, useEffect, useReducer } from "react";
-import { disableElements, randomPokemon } from '../modules/util.ts';
+import { createContext, useEffect, useReducer, useState } from "react";
+import { randomPokemon } from '../modules/util.ts';
 import { partyPokemonReducer, wildPokemonReducer } from "./PokemonReducers";
 
 const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
   const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder")) || [];
-  const [wildPokemon, dispatchWildPokemon] = useReducer(wildPokemonReducer, null)
-  const [partyPokemon, dispatchPartyPokemon] = useReducer(partyPokemonReducer, localStorageData)
+  const [wildPokemon, dispatchWildPokemon] = useReducer(wildPokemonReducer, null);
+  const [partyPokemon, dispatchPartyPokemon] = useReducer(partyPokemonReducer, localStorageData);
+  const [disabled, setDisabled] = useState(true)
+  
 
   function save(data) {
     localStorage.setItem("pokemonPartyBuilder", JSON.stringify(data));
@@ -26,10 +28,12 @@ export const PokemonProvider = ({ children }) => {
         type: "SET_WILD_POKEMON",
         payload: data
       });
-      disableElements(false);
+
+      setDisabled(false);
     } catch (e) {
       alert("Error: " + e.message + ".\n\nPlease enter a Pokemon name or an ID between 1 and 1025.");
-      disableElements(false);
+      
+      setDisabled(false);
     }
   }
 
@@ -37,7 +41,11 @@ export const PokemonProvider = ({ children }) => {
     fetchPokemon(randomPokemon());
   }, [])
 
-  return <PokemonContext.Provider value={{ wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon }}>
+  useEffect(() => {
+    if (partyPokemon.length === 6) setDisabled(true);
+  }, [])
+
+  return <PokemonContext.Provider value={{ wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, setDisabled }}>
     {children}
   </PokemonContext.Provider>
 }

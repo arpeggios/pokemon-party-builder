@@ -4,13 +4,15 @@ import { IPartyPokemon } from "../interfaces/IPokemon";
 import { Box, Button, Typography } from "@mui/material"
 
 export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
-  const { dispatchPartyPokemon } = useContext(PokemonContext);
+  const { dispatchPartyPokemon, setDisabled } = useContext(PokemonContext);
 
   function handleRemove(partyIndex: number) {
     dispatchPartyPokemon({
       type: "REMOVE_POKEMON",
       payload: partyIndex
     });
+
+    setDisabled(false);
   }
 
   return (
