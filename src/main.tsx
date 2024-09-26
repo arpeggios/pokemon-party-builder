@@ -26,7 +26,7 @@ const theme = createTheme({
         root: {
           fontSize: "14px",
           lineHeight: "normal",
-          top: "-7px !important"
+          top: "-9px !important"
         }
       }
     }

@@ -62,7 +62,7 @@ export function Search() {
             value={inputValue}
             onChange={(e) => {setInputValue(e.target.value.trim().toLowerCase())}}
           />
-          <Button type="submit" variant="contained" sx={{ marginLeft: "10px", marginBottom: "10px" }}>
+          <Button type="submit" variant="contained" sx={{ height: "30px", marginLeft: "10px", marginBottom: "10px" }}>
             Search
           </Button>
         </Box>
