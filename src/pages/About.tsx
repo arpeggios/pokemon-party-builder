@@ -18,6 +18,7 @@ export function About() {
       <Typography sx={{ mb: 2 }}>
         Pokemon Party Builder is built with React, Material UI, and the <Link href="https://pokeapi.co/" target="_blank" rel="noopener">Pokeapi</Link>.
       </Typography>
+      <Typography><Link href="https://github.com/arpeggios/pokemon-party-builder">GitHub</Link></Typography>
       <Typography variant="h1">
         Who built it?
       </Typography>
