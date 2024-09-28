@@ -12,9 +12,6 @@ export function Mode() {
     newAlignment: string | null,
   ) => {
     setAlignment(newAlignment);
-
-    // console.log("event")
-    // console.log(event)
   };
 
   return (

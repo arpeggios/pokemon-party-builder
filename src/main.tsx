@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+// import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './index.css'
@@ -7,12 +7,12 @@ import { theme } from "./theme"
 
 
 createRoot(document.getElementById('root') as Element).render(
-  <StrictMode>
+  // <StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
         <App />
       </Container>
     </ThemeProvider>
-  </StrictMode>
+  // </StrictMode>
 )
