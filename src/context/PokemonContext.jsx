@@ -8,7 +8,8 @@ export const PokemonProvider = ({ children }) => {
   const localStorageData = JSON.parse(localStorage.getItem("pokemonPartyBuilder")) || [];
   const [wildPokemon, dispatchWildPokemon] = useReducer(wildPokemonReducer, null);
   const [partyPokemon, dispatchPartyPokemon] = useReducer(partyPokemonReducer, localStorageData);
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true);
+  const [alignment, setAlignment] = useState("discover");
   
 
   function save(data) {
@@ -45,7 +46,7 @@ export const PokemonProvider = ({ children }) => {
     if (partyPokemon.length === 6) setDisabled(true);
   }, [])
 
-  return <PokemonContext.Provider value={{ wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, setDisabled }}>
+  return <PokemonContext.Provider value={{ wildPokemon, fetchPokemon, partyPokemon, dispatchPartyPokemon, disabled, setDisabled, alignment, setAlignment }}>
     {children}
   </PokemonContext.Provider>
 }

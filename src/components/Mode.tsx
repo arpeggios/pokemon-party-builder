@@ -1,19 +1,22 @@
-import React from 'react';
+import { MouseEvent, useContext } from 'react';
+import { PokemonContext } from "../context/PokemonContext"
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { Box } from '@mui/material';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 export function Mode() {
-  const [alignment, setAlignment] = React.useState<string | null>('left');
-
+  const { alignment, setAlignment } = useContext(PokemonContext);
   const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     newAlignment: string | null,
   ) => {
     setAlignment(newAlignment);
+
+    // console.log("event")
+    // console.log(event)
   };
-  
+
   return (
     <Box sx={{
       display: "flex",
