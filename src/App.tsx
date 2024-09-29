@@ -1,6 +1,5 @@
 // todo:
 // - use redux instead of context api
-// - make charts for party member stats
 //
 // optional:
 // - add history list of last several wild pokemon

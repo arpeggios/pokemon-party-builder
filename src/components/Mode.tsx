@@ -11,7 +11,7 @@ export function Mode() {
     event: MouseEvent<HTMLElement>,
     newAlignment: string | null,
   ) => {
-    setAlignment(newAlignment);
+    newAlignment ? setAlignment(newAlignment) : null;
   };
 
   return (
@@ -30,7 +30,7 @@ export function Mode() {
         <ToggleButton value="discover">
           <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png' />
         </ToggleButton>
-        <ToggleButton value="stats" >
+        <ToggleButton value="stats">
           <ShowChartIcon />
         </ToggleButton>
       </ToggleButtonGroup>

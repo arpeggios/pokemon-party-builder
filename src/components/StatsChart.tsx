@@ -1,14 +1,11 @@
 import { Box } from "@mui/material"
-import { Pie } from "react-chartjs-2"
 import { Line } from "react-chartjs-2"
-import { IStats } from "../interfaces/IStats"
-import { IChartData } from "../interfaces/IChartData"
 
 interface Props {
-  // chartData: Array<IStats>
-  // chartData: IChartData
   chartData: any
 }
+
+const labelColor = "#d9d9d9"
 
 export function StatsChart({ chartData }: Props) {
   return (
@@ -17,7 +14,26 @@ export function StatsChart({ chartData }: Props) {
         plugins: {
           title: {
             display: true,
-            text: "Pokemon Stats"
+            text: "Stats"
+          },
+          legend: {
+            labels: {
+              color: labelColor
+            }
+          }
+        },
+        responsive: true,
+        aspectRatio: (window.innerWidth > 700) ? 2 : 1,
+        scales: {
+          x: {
+            ticks: {
+              color: labelColor
+            }
+          },
+          y: {
+            ticks: {
+              color: labelColor
+            }
           }
         }
       }} />

@@ -6,12 +6,12 @@ import { Search } from "../components/Search";
 import { Stats } from "../components/Stats";
 
 export function Home() {
-  const { alignment } = useContext(PokemonContext);
+  const { alignment, partyPokemon } = useContext(PokemonContext);
   return (
     <>
       {alignment === "discover" && <Search />}
       {alignment === "stats" && <Stats />}
-      <Mode />
+      {partyPokemon.length > 0 ? <Mode /> : null}
       <Party />
     </>
   )
