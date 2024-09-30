@@ -17,7 +17,7 @@ export function PartyPokemon({ partyMember, index }: IPartyPokemon) {
 
   return (
     <>
-      <Box className="this-pokemon" sx={{ textAlign: "center", textTransform: "capitalize" }}>
+      <Box className="this-pokemon" sx={{ textAlign: "center", textTransform: "capitalize", maxWidth: "100px" }}>
         <Box component="img" src={partyMember.sprites.front_default} alt={partyMember.name} />
         <Typography sx={{fontWeight: "bold"}} data-testid="party-pokemon-name">{partyMember.name}</Typography>
         <Typography data-testid="party-pokemon-id">ID: {partyMember.id}</Typography>
