@@ -28,7 +28,7 @@ export function Mode() {
         aria-label="text alignment"
       >
         <ToggleButton value="discover">
-          <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png' />
+          <img src='/src/images/poke-ball.png' />
         </ToggleButton>
         <ToggleButton value="stats">
           <ShowChartIcon />

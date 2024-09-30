@@ -32,7 +32,7 @@ export const PokemonProvider = ({ children }) => {
 
       setDisabled(false);
     } catch (e) {
-      alert("Error: " + e.message + ".\n\nPlease enter a Pokemon name or an ID between 1 and 1025.");
+      alert("Please enter a Pokemon name or an ID between 1 and 1025.");
       
       setDisabled(false);
     }
